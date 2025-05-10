@@ -38,22 +38,12 @@ export async function GET(request: Request) {
             name.includes(partLower) ||
             country.includes(partLower);
 
-          // Debug: Log each airport's comparison
-          console.log("Checking airport:", {
-            city,
-            code,
-            name,
-            country,
-            partLower,
-            matches,
-          });
-
           return matches;
         });
       })
       .slice(0, 10);
 
-    console.log("Filtered Airports:", filteredAirports); // Debug: Log filtered results
+    // console.log("Filtered Airports:", filteredAirports); // Debug: Log filtered results
 
     return NextResponse.json(filteredAirports);
   } catch (error) {
