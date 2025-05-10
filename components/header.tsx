@@ -24,7 +24,6 @@ export function Header() {
   const routes = [
     { href: "/", label: "Home", active: pathname === "/" },
     { href: "/search", label: "Flights", active: pathname === "/search" },
-    { href: "/hotels", label: "Hotels", active: pathname === "/hotels" },
     { href: "/activities", label: "Activities", active: pathname === "/activities" },
     { href: "/bookings", label: "My Trips", active: pathname === "/bookings" },
     { href: "/contact", label: "Contact", active: pathname === "/contact" },

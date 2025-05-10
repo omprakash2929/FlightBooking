@@ -4,26 +4,56 @@ import { airports } from "@/data/airports";
 export async function GET(request: Request) {
   // Get query parameters
   const { searchParams } = new URL(request.url);
-  const query = searchParams.get("query");
+  const query = searchParams.get("query")?.trim(); // Trim whitespace
 
   try {
-    // Fetch airports from RapidAPI
-   
+    console.log("Query:", query); // Debug: Log the query
+    console.log("Airports:", airports); // Debug: Log the airports array
 
-    // If no query or query is too short, return top 5 airports
-    if (!query || query.length < 2) {
-      return NextResponse.json(airports.slice(0, 5));
+    // If no query, return all airports
+    if (!query) {
+      console.log("Returning all airports due to empty query");
+      return NextResponse.json(airports);
     }
+
+    // Clean and split the query (e.g., "Bhubaneswar (BBI)" -> "Bhubaneswar" and "BBI")
+    const cleanQuery = query.replace(/\(.*?\)/g, "").trim(); // Remove parentheses content
+    const codeMatch = query.match(/\((\w+)\)/); // Extract code inside parentheses
+    const queryParts = [cleanQuery, codeMatch ? codeMatch[1] : ""].filter(Boolean); // Include city and code
 
     // Filter airports based on query
     const filteredAirports = airports
-      .filter(
-        (airport) =>
-          airport.city.toLowerCase().includes(query.toLowerCase()) ||
-          airport.code.toLowerCase().includes(query.toLowerCase()) ||
-          airport.name.toLowerCase().includes(query.toLowerCase())
-      )
-      .slice(0, 5);
+      .filter((airport) => {
+        const city = airport.city?.toLowerCase() || "";
+        const code = airport.code?.toLowerCase() || "";
+        const name = airport.name?.toLowerCase() || "";
+        const country = airport.country?.toLowerCase() || "";
+
+        // Check if any query part matches city, code, name, or country
+        return queryParts.some((part) => {
+          const partLower = part.toLowerCase();
+          const matches =
+            city.includes(partLower) ||
+            code.includes(partLower) ||
+            name.includes(partLower) ||
+            country.includes(partLower);
+
+          // Debug: Log each airport's comparison
+          console.log("Checking airport:", {
+            city,
+            code,
+            name,
+            country,
+            partLower,
+            matches,
+          });
+
+          return matches;
+        });
+      })
+      .slice(0, 10);
+
+    console.log("Filtered Airports:", filteredAirports); // Debug: Log filtered results
 
     return NextResponse.json(filteredAirports);
   } catch (error) {

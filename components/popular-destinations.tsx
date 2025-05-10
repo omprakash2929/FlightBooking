@@ -12,7 +12,7 @@ export function PopularDestinations() {
     {
       id: "dest2",
       name: "Thailand",
-      image: "https://cdn.pixabay.com/photo/2016/11/14/03/35/thailand-1822828_1280.jpg",
+      image: "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?q=80&w=2039&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     {
       id: "dest3",

@@ -83,42 +83,75 @@ export default function FlightDetailPage() {
     setFormValid(valid)
   }
 
-  const handleBooking =async () => {
-    if (!flight) return
+ const handleBooking = async () => {
+  if (!flight) return;
 
-    if (currentPrice > walletBalance) {
-      toast({
-        title: "Insufficient balance",
-        description: "You don't have enough balance in your wallet to book this flight.",
-        variant: "destructive",
-      })
-      return
-    }
+  if (currentPrice > walletBalance) {
+    toast({
+      title: 'Insufficient balance',
+      description: "You don't have enough balance in your wallet to book this flight.",
+      variant: 'destructive',
+    });
+    return;
+  }
 
-
-    // Process booking
-    updateWalletBalance(walletBalance - currentPrice)
-
-    const booking = {
-      id: `BK${Math.floor(Math.random() * 1000000)}`,
+  try {
+    // Prepare the booking data to send to the API
+    const bookingData = {
       flightId: flight.id,
-      flight: flight,
-      passengerInfo,
-      bookingDate: new Date().toISOString(),
-      status: "confirmed",
+      passengerInfo: {
+        firstName: passengerInfo.firstName,
+        lastName: passengerInfo.lastName,
+        email: passengerInfo.email,
+        phone: passengerInfo.phone,
+      },
       price: currentPrice,
-      pnr: `PNR${Math.floor(Math.random() * 1000000)}`,
+    };
+
+    // Send POST request to /api/booking
+    const response = await fetch('/api/booking', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(bookingData),
+    });
+
+    if (!response.ok) {
+      const { error } = await response.json();
+      throw new Error(error || 'Failed to create booking');
     }
 
-    addBooking(booking)
+    const booking = await response.json();
+
+    // Update wallet balance and booking context
+    updateWalletBalance(walletBalance - currentPrice);
+    addBooking({
+      id: booking.id,
+      flightId: flight.id,
+      flight,
+      passengerInfo: booking.passengerInfo,
+      bookingDate: booking.bookingDate,
+      status: booking.status,
+      price: booking.price,
+      pnr: booking.pnr,
+    });
 
     toast({
-      title: "Booking successful!",
+      title: 'Booking successful!',
       description: `Your booking has been confirmed with PNR: ${booking.pnr}`,
-    })
+    });
 
-    router.push(`/booking/${booking.id}`)
+    router.push(`/booking/${booking.id}`);
+  } catch (error: any) {
+    console.error('Booking error:', error);
+    toast({
+      title: 'Booking failed',
+      description: error.message || 'An error occurred while booking the flight.',
+      variant: 'destructive',
+    });
   }
+};
 
   if (loading) {
     return (

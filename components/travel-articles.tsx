@@ -19,7 +19,7 @@ export function TravelArticles() {
     {
       id: "article3",
       title: "Why the Bali: An Unforgettable Safari Journey",
-      image: "https://cdn.pixabay.com/photo/2016/07/05/18/35/bali-1499059_1280.jpg",
+      image: "https://cdn.pixabay.com/photo/2019/12/11/21/51/bali-4689382_1280.jpg",
       date: "April 10, 2023",
     },
   ]

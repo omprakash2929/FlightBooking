@@ -1,4 +1,4 @@
-import type { Airline } from "@/types"
+import type { Airline } from "@/types";
 
 export const airlines: Airline[] = [
   {
@@ -18,7 +18,43 @@ export const airlines: Airline[] = [
     name: "Vistara",
   },
   {
-    code: "G8",
-    name: "GoAir",
+    code: "EK",
+    name: "Emirates",
   },
-]
+  {
+    code: "QR",
+    name: "Qatar Airways",
+  },
+  {
+    code: "TK",
+    name: "Turkish Airlines",
+  },
+  {
+    code: "CX",
+    name: "Cathay Pacific",
+  },
+  {
+    code: "MH",
+    name: "Malaysia Airlines",
+  },
+  {
+    code: "QF",
+    name: "Qantas",
+  },
+  {
+    code: "LX",
+    name: "Swiss International Air Lines",
+  },
+  {
+    code: "EI",
+    name: "Aer Lingus",
+  },
+  {
+    code: "AZ",
+    name: "Alitalia",
+  },
+  {
+    code: "SK",
+    name: "Scandinavian Airlines",
+  },
+];

@@ -41,7 +41,7 @@ export function FeaturedFlights() {
     {
       id: "trip5",
       title: "Grand Canyon Helicopter Adventure",
-      image: "https://cdn.pixabay.com/photo/2016/12/05/16/21/grand-canyon-1884645_1280.jpg",
+      image: "https://images.unsplash.com/photo-1730754026401-ec6ecd631f31?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       price: 9999,
       duration: "2 days",
       rating: 4.9,
@@ -49,7 +49,7 @@ export function FeaturedFlights() {
     {
       id: "trip6",
       title: "Bali Beaches & Temples Tour",
-      image: "https://cdn.pixabay.com/photo/2016/07/05/18/35/bali-1499059_1280.jpg",
+      image: "https://cdn.pixabay.com/photo/2020/09/06/09/05/beach-5548446_1280.jpg",
       price: 13999,
       duration: "8 days",
       rating: 4.7,
@@ -57,7 +57,7 @@ export function FeaturedFlights() {
     {
       id: "trip7",
       title: "Venice Gondola Experience",
-      image: "https://cdn.pixabay.com/photo/2016/02/19/11/36/canal-1209808_1280.jpg",
+      image: "https://cdn.pixabay.com/photo/2018/02/26/14/22/venice-3183168_1280.jpg",
       price: 7999,
       duration: "4 days",
       rating: 4.6,
@@ -65,7 +65,7 @@ export function FeaturedFlights() {
     {
       id: "trip8",
       title: "Northern Lights Iceland Tour",
-      image: "https://cdn.pixabay.com/photo/2016/01/27/04/32/books-1163695_1280.jpg",
+      image: "https://cdn.pixabay.com/photo/2017/03/02/16/54/iceland-2111811_1280.jpg",
       price: 16999,
       duration: "5 days",
       rating: 4.9,
